@@ -1,0 +1,56 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { setGroundCaseState } from './features/gameData/gamedataSlice';
+
+
+const useAi = (groundUpdated) => {
+  const dispatch = useDispatch();
+  const aiIcon = useSelector((state) => state.gamedata.aiIcon);
+  const caseAlreadyPlayed = useSelector((state) => state.gamedata.casePlayed)
+  const groundState = useSelector((state) => state.gamedata.gameGroundState)
+
+
+
+  const choseACase = (caseUpdated) => {
+    let caseChosed;
+    do
+    {
+      caseChosed=Math.floor(Math.random() * 9); // Retourne un nombre entier entre 0 et 8
+    }
+        while (caseAlreadyPlayed.includes(caseChosed))
+
+    return caseChosed;
+  };
+
+  
+  const checkWinner = (state) => {
+    const winningCombinations = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6] 
+    ];
+
+    for (let combination of winningCombinations) {
+        const [a, b, c] = combination;
+        if (state[a] && state[a] === state[b] && state[a] === state[c]) {
+            return true;
+        }
+    }
+
+    return null;
+};
+
+  const aiplay = () => {
+    console.log("ai is playing")
+    const caseIndex = choseACase();
+    dispatch(setGroundCaseState({ index: caseIndex, Icon: aiIcon }));
+    const newState = [...groundState];
+    newState[caseIndex] = aiIcon;
+    return checkWinner(newState)
+
+
+  };
+
+  return { aiplay };
+};
+
+export default useAi;
