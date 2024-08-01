@@ -15,7 +15,6 @@
     max-width: 20vw;;
     padding: 0;
     margin: 0;
-    border: solid red 1px;
     justify-content: center;
 }
 
@@ -31,4 +30,30 @@
 .playIcon {
         font-size: 4vw; /* Ajustez la taille de l'icône ici */
         line-height: 1; /* Assurez-vous que l'icône est bien centrée */
+}
+
+
+
+@media screen and (max-width: 1080px) {
+    
+.ground {
+    max-width: 60vw;;
+}
+
+.case {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 18.66vw;
+    width: 18.66vw;
+    box-sizing: border-box; /* Inclut les bordures dans la taille totale */
+}
+
+
+.playIcon {
+    font-size: 12vw; /* Ajustez la taille de l'icône ici */
+    line-height: 1; /* Assurez-vous que l'icône est bien centrée */
+}
+
+
 }
