@@ -12,14 +12,20 @@ function Endingscreen () {
 
     const isPlayerWin = useSelector((state) => state.gamedata.playerWon)
     return (
+
         <>
-        {isPlayerWin ? (
-            <h1>Felicitations pour votre victoire !</h1>
-        ) :
-    
-    (
-        <h1>N'abandonnez pas et reessayez</h1>
-    )}
+
+        { isPlayerWin === null ?
+        ( <h1>Dommage pour ce résultat nul. N'hésitez pas à réessayer ! </h1>        ) 
+        : isPlayerWin === false ?
+        (
+            <h1> N'hésitez pas à réessayer ! </h1>
+        )
+
+        : (
+            <h1> Félicitations pour votre victoire ! </h1>
+        )
+    }
 
     
 <Button

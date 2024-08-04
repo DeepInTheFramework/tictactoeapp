@@ -28,6 +28,23 @@ function Playground() {
         MinusCircleOutlined: MinusCircleOutlined
     };
 
+
+    const isADraw = (stateUpdated) => {
+
+        console.log("j'affiche statusUpdate :", stateUpdated)
+        let checkDraw = false;
+        
+       if(!stateUpdated.includes(null))
+       {
+        checkDraw=true;
+        dispatch(setEndingScreen(true))
+        dispatch(setGameStart(false))
+       }
+
+        return checkDraw;
+    }
+
+
     const checkWinner = (state) => {
         const winningCombinations = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8], 
@@ -62,10 +79,14 @@ function Playground() {
                 return null;
             }
 
+            if (isADraw(newState)) {
+                return null;
+            }
+
+
             // AI's turn    
             setTimeout(() => {
                 const newCasesPlayed = [...casesAlreadyPlayed, index]
-                console.log("New case are : ", newCasesPlayed);
                 const Winner = aiplay(newCasesPlayed)
                 if (Winner) {
                     setPlayerWinner(false);
@@ -75,8 +96,15 @@ function Playground() {
                     console.log("L'IA à gagné !")
                     return null;
                 }
+
+                if (isADraw(newState)) {
+                    return null;
+                }
+        
             }, 500); // Délai pour simuler la "réflexion" de l'IA
         }
+
+ 
     };
 
 
