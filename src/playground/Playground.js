@@ -65,6 +65,7 @@ function Playground() {
             // AI's turn    
             setTimeout(() => {
                 const newCasesPlayed = [...casesAlreadyPlayed, index]
+                console.log("New case are : ", newCasesPlayed);
                 const Winner = aiplay(newCasesPlayed)
                 if (Winner) {
                     setPlayerWinner(false);

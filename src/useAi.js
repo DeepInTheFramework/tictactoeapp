@@ -16,7 +16,7 @@ const useAi = (groundUpdated) => {
     {
       caseChosed=Math.floor(Math.random() * 9); // Retourne un nombre entier entre 0 et 8
     }
-        while (caseAlreadyPlayed.includes(caseChosed))
+        while (caseUpdated.includes(caseChosed))
 
     return caseChosed;
   };
@@ -39,9 +39,9 @@ const useAi = (groundUpdated) => {
     return null;
 };
 
-  const aiplay = () => {
+  const aiplay = (caseUpdated) => {
     console.log("ai is playing")
-    const caseIndex = choseACase();
+    const caseIndex = choseACase(caseUpdated);
     dispatch(setGroundCaseState({ index: caseIndex, Icon: aiIcon }));
     const newState = [...groundState];
     newState[caseIndex] = aiIcon;
