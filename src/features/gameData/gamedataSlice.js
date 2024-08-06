@@ -5,7 +5,7 @@ import {MinusCircleOutlined} from '@ant-design/icons';
 const initialState = {
     gameStart: false,
     gameGroundState: Array(9).fill(null),
-    isPlayerFirst: true,
+    didPlayerStart: null,
     isPlayerTurn: true,
     playerIcon: 'CloseOutlined',  // Assurez-vous que ce sont les composants et non des chaînes
     aiIcon: 'MinusCircleOutlined',  // Idem ici
@@ -52,12 +52,17 @@ export const gameSlice = createSlice({
             state.playerWon = action.payload
         },
 
+        setDidPlayerStart : (state, action) => {
+            state.didPlayerStart = action.payload;
+        },
+
         resetGame: (state) => {
             return initialState;
         }
     }
 })
 
-export const { setGameStart, setGroundState, setGroundCaseState, setEndingScreen, setPlayerWon, resetGame } = gameSlice.actions
+export const { setGameStart, setGroundState, setGroundCaseState, setEndingScreen,
+     setPlayerWon, resetGame, setDidPlayerStart } = gameSlice.actions
 
 export default gameSlice.reducer

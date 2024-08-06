@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { decrement, incrementByAmount } from "../features/counter/counterSlice";
 import { useEffect, useState } from "react";
-
+import { Statistic } from "antd";
 
     function Counter () {
         const dispatch = useDispatch() 
@@ -27,7 +27,7 @@ import { useEffect, useState } from "react";
         
         return (
                     <>
-                    {timer}
+                                {timer}
                     </>
         )
 

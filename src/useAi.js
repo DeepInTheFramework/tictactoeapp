@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setGroundCaseState } from './features/gameData/gamedataSlice';
+import { setGroundCaseState, setDidPlayerStart } from './features/gameData/gamedataSlice';
 
 
 const useAi = (groundUpdated) => {
@@ -8,6 +8,25 @@ const useAi = (groundUpdated) => {
   const caseAlreadyPlayed = useSelector((state) => state.gamedata.casePlayed)
   const groundState = useSelector((state) => state.gamedata.gameGroundState)
 
+  const whoStart = () => {
+      const pick = Math.round(Math.random())
+      console.log("Pick égal :", pick)
+
+    if(pick>0)
+    {
+      console.log("Le joueur start")
+        dispatch(setDidPlayerStart(true))
+    }
+
+    else {
+      console.log("L'IA start")
+      dispatch(setDidPlayerStart(false))
+      setTimeout(() => {
+        aiplay(Array(9).fill(null))
+      }, "1000");
+    }
+
+}
 
 
   const choseACase = (caseUpdated) => {
@@ -20,6 +39,7 @@ const useAi = (groundUpdated) => {
 
     return caseChosed;
   };
+
 
   
   const checkWinner = (state) => {
@@ -48,7 +68,7 @@ const useAi = (groundUpdated) => {
     return checkWinner(newState)
   };
 
-  return { aiplay };
+  return { aiplay, whoStart };
 };
 
 export default useAi;

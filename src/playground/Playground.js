@@ -19,15 +19,26 @@ function Playground() {
     const groundState = useSelector((state) => state.gamedata.gameGroundState)
     const playerIcon = useSelector((state) => state.gamedata.playerIcon)
     const casesAlreadyPlayed = useSelector((state) => state.gamedata.casePlayed)
-    const { aiplay } = useAi();
+    const { aiplay, whoStart } = useAi();
     const [winner, setWinner] = useState(null)
     const [playerWinner, setPlayerWinner] = useState(null);
+    const [started, setStarted] = useState(false)
+
+    useEffect(() => {
+        console.log("effect trigered")
+        if(!started)
+        {
+            whoStart()
+            setStarted(true)
+        }
+    }, [])
 
 
     const iconMap = {
         CloseOutlined: CloseOutlined,
         MinusCircleOutlined: MinusCircleOutlined
     };
+
 
 
     const isADraw = (stateUpdated) => {
@@ -144,4 +155,5 @@ function Playground() {
         )
     );
 }
+
 export default Playground;
