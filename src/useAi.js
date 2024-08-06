@@ -46,8 +46,6 @@ const useAi = (groundUpdated) => {
     const newState = [...groundState];
     newState[caseIndex] = aiIcon;
     return checkWinner(newState)
-
-
   };
 
   return { aiplay };

@@ -7,6 +7,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import { MinusCircleOutlined } from '@ant-design/icons';
 import useAi from "../useAi";
 import { setEndingScreen } from "../features/gameData/gamedataSlice";
+import Counter from "../counter/Counter";
 
 
 
@@ -123,6 +124,7 @@ function Playground() {
         available && (
             <div className="groundContainer">
                 <div className="ground">
+                < Counter />
                 {groundState.map((iconName, index) => {
                         const IconComponent = iconMap[iconName];
                         return (
