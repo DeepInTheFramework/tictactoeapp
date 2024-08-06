@@ -123,8 +123,10 @@ function Playground() {
     return (
         available && (
             <div className="groundContainer">
-                <div className="ground">
+                <div className="timerContainer">
                 < Counter />
+                </div>
+                <div className="ground">
                 {groundState.map((iconName, index) => {
                         const IconComponent = iconMap[iconName];
                         return (

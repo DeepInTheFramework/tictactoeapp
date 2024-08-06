@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { decrement } from "../features/counter/counterSlice";
+import { decrement, incrementByAmount } from "../features/counter/counterSlice";
 import { useEffect, useState } from "react";
 
 
@@ -16,10 +16,15 @@ import { useEffect, useState } from "react";
             return () => clearInterval(interval); // Cleanup the interval on component unmount
         }, [dispatch]);
 
-        useEffect (() => {
-            setTimer(counterValue)
-        }, [counterValue])
-
+        useEffect(() => {
+            if (counterValue === 1) {
+                dispatch(incrementByAmount(59));
+                setTimer(60);
+            } else {
+                setTimer(counterValue);
+            }
+        }, [counterValue, dispatch]);
+        
         return (
                     <>
                     {timer}
